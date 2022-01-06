@@ -1,0 +1,27 @@
+.Weather {
+  color: rgb(245, 225, 225);
+}
+
+.Weather .wrapper {
+  padding: 25px;
+}
+
+.Weather p {
+  font-size: 25px;
+  margin: 15px;
+}
+
+.Weather p strong {
+  font-size: 45px;
+}
+
+.Weather ul {
+  list-style: none;
+  padding: 0;
+  font-size: 14px;
+}
+
+.Weather h2 {
+  font-size: 35px;
+  margin: 10px;
+}
