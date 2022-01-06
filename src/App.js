@@ -9,11 +9,11 @@ function App() {
       <div className="App-background">
         <Weather />
         <Loader
-          type="BallTriangle"
-          color="#00BFFF"
+          type="Puff"
+          color="rgb(245, 225, 225)"
           height={100}
           width={100}
-          timeout={3000} //3 secs
+          timeout={7000}
         />
       </div>
     </div>

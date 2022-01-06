@@ -8,11 +8,15 @@
 
 .Weather p {
   font-size: 25px;
-  margin: 15px;
+  margin: 10px;
 }
 
 .Weather p strong {
   font-size: 45px;
+}
+
+.Weather p em {
+  font-size: 20px;
 }
 
 .Weather ul {
