@@ -1,14 +1,16 @@
 import React from "react";
 import axios from "axios";
-import ReactAnimatedWeather from "react-animated-weather";
 
 import "./Weather.css";
 import DefaultCity from "./DefaultCity";
 import { useState } from "react";
+import WeatherIcon from "./WeatherIcon";
 
 export default function Weather() {
   const [city, setCity] = useState("Taipei City");
-  const [weatherOverview, setWeatherOverview] = useState(null);
+  const [weatherOverview, setWeatherOverview] = useState({
+    city: "Taipei City",
+  });
   const [searchLoaded, setSearchLoaded] = useState(false);
 
   function setCurrentTime(time) {
@@ -61,39 +63,18 @@ export default function Weather() {
 
   function showWeatherOverview(response) {
     setSearchLoaded(true);
-    let temp = Math.round(response.data.main.temp);
-    let humidity = response.data.main.humidity;
-    let wind = Math.round(response.data.wind.speed);
-    let description = response.data.weather[0].description;
-    let feelTemp = Math.round(response.data.main.feels_like);
-    let currentDate = setCurrentDate(response.data.dt * 1000);
-    let currentTime = setCurrentTime(response.data.dt * 1000);
 
-    setWeatherOverview(
-      <div>
-        <p>
-          <ReactAnimatedWeather
-            icon={"PARTLY_CLOUDY_NIGHT"}
-            color={"rgb(245, 225, 225)"}
-            size={70}
-            animate={"true"}
-          />
-          <strong>{temp}</strong> °C / °F
-          <div>
-            <em>"{description}"</em>
-          </div>
-        </p>
-        <ul>
-          <li>{currentDate}</li>
-          <li>{currentTime}</li>
-          <br />
-          <br />
-          <li>Feel like: {feelTemp} °C</li>
-          <li>Humidity: {humidity} %</li>
-          <li>Wind: {wind} Km/hr</li>
-        </ul>
-      </div>
-    );
+    setWeatherOverview({
+      city: response.data.name,
+      temp: Math.round(response.data.main.temp),
+      humidity: response.data.main.humidity,
+      wind: Math.round(response.data.wind.speed),
+      description: response.data.weather[0].description,
+      feelTemp: Math.round(response.data.main.feels_like),
+      currentDate: setCurrentDate(response.data.dt * 1000),
+      currentTime: setCurrentTime(response.data.dt * 1000),
+      icon: response.data.weather[0].icon,
+    });
 
     return weatherOverview;
   }
@@ -124,8 +105,22 @@ export default function Weather() {
             />
             <input type="submit" value="Search" />
           </form>
-          <h2>{city}</h2>
-          {weatherOverview}
+          <h2>{weatherOverview.city}</h2>
+          <p>
+            <WeatherIcon iconCode={weatherOverview.icon} />
+            <strong>{weatherOverview.temp}</strong> °C / °F
+            <br />
+            <em>"{weatherOverview.description}"</em>
+          </p>
+          <ul>
+            <li>{weatherOverview.currentDate}</li>
+            <li>{weatherOverview.currentTime}</li>
+            <br />
+            <br />
+            <li>Feel like: {weatherOverview.feelTemp} °C</li>
+            <li>Humidity: {weatherOverview.humidity} %</li>
+            <li>Wind: {weatherOverview.wind} Km/hr</li>
+          </ul>
         </div>
       </div>
     );
@@ -133,13 +128,12 @@ export default function Weather() {
     return (
       <div className="Weather">
         <div className="wrapper">
-          <form onSubmit={handleSubmit}>
+          <form>
             <input
               type="search"
               placeholder="Enter a city"
               autoComplete="off"
               autoFocus="on"
-              onChange={handleInput}
             />
             <input type="submit" value="Search" />
           </form>

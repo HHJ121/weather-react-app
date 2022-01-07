@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
-import ReactAnimatedWeather from "react-animated-weather";
+
 import { useState } from "react";
+import WeatherIcon from "./WeatherIcon";
 
 export default function DefaultCity() {
   const [defaultOverview, setDefaultOverview] = useState("");
@@ -57,39 +58,17 @@ export default function DefaultCity() {
   }
 
   function showDefaultOverview(response) {
-    let temp = Math.round(response.data.main.temp);
-    let humidity = response.data.main.humidity;
-    let wind = Math.round(response.data.wind.speed);
-    let description = response.data.weather[0].description;
-    let feelTemp = Math.round(response.data.main.feels_like);
-    let currentDate = setDefaultCurrentDate(response.data.dt * 1000);
-    let currentTime = setDefaultCurrentTime(response.data.dt * 1000);
-
-    setDefaultOverview(
-      <div>
-        <p>
-          <ReactAnimatedWeather
-            icon={"PARTLY_CLOUDY_NIGHT"}
-            color={"rgb(245, 225, 225)"}
-            size={70}
-            animate={"true"}
-          />
-          <strong>{temp}</strong> °C / °F
-          <div>
-            <em>"{description}"</em>
-          </div>
-        </p>
-        <ul>
-          <li>{currentDate}</li>
-          <li>{currentTime}</li>
-          <br />
-          <br />
-          <li>Feel like: {feelTemp} °C</li>
-          <li>Humidity: {humidity} %</li>
-          <li>Wind: {wind} Km/hr</li>
-        </ul>
-      </div>
-    );
+    setDefaultOverview({
+      city: "Taipei City",
+      temp: Math.round(response.data.main.temp),
+      humidity: response.data.main.humidity,
+      wind: Math.round(response.data.wind.speed),
+      description: response.data.weather[0].description,
+      feelTemp: Math.round(response.data.main.feels_like),
+      currentDate: setDefaultCurrentDate(response.data.dt * 1000),
+      currentTime: setDefaultCurrentTime(response.data.dt * 1000),
+      icon: response.data.weather[0].icon,
+    });
 
     return defaultOverview;
   }
@@ -102,8 +81,22 @@ export default function DefaultCity() {
 
   return (
     <div className="DefaultCity">
-      <h2>{city}</h2>
-      {defaultOverview}
+      <h2>{defaultOverview.city}</h2>
+      <p>
+        <WeatherIcon iconCode={defaultOverview.icon} />
+        <strong>{defaultOverview.temp}</strong> °C / °F
+        <br />
+        <em>"{defaultOverview.description}"</em>
+      </p>
+      <ul>
+        <li>{defaultOverview.currentDate}</li>
+        <li>{defaultOverview.currentTime}</li>
+        <br />
+        <br />
+        <li>Feel like: {defaultOverview.feelTemp} °C</li>
+        <li>Humidity: {defaultOverview.humidity} %</li>
+        <li>Wind: {defaultOverview.wind} Km/hr</li>
+      </ul>
     </div>
   );
 }
