@@ -29,3 +29,8 @@
   font-size: 35px;
   margin: 10px;
 }
+
+.Weather .loader {
+  text-align: center;
+  margin-top: 50px;
+}

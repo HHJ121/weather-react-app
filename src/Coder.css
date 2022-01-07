@@ -1,0 +1,10 @@
+.Coder p {
+  font-size: 12px;
+  margin-top: 150px;
+  text-align: center;
+}
+
+.Coder a {
+  text-decoration: none;
+  color: rgb(245, 187, 111);
+}
