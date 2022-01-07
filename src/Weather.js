@@ -11,6 +11,54 @@ export default function Weather() {
   const [weatherOverview, setWeatherOverview] = useState(null);
   const [searchLoaded, setSearchLoaded] = useState(false);
 
+  function setCurrentTime(time) {
+    let currentTime = new Date(time);
+    let hours = currentTime.getHours();
+    let minutes = currentTime.getMinutes();
+
+    if (hours < 10) {
+      hours = `0${hours}`;
+    }
+
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+
+    return `${hours}:${minutes}`;
+  }
+
+  function setCurrentDate(time) {
+    let currentDate = new Date(time);
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    let day = days[currentDate.getDay()];
+    let months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    let month = months[currentDate.getMonth()];
+    let date = currentDate.getDate();
+
+    return `${day}, ${month} ${date}`;
+  }
+
   function showWeatherOverview(response) {
     setSearchLoaded(true);
     let temp = Math.round(response.data.main.temp);
@@ -18,6 +66,8 @@ export default function Weather() {
     let wind = Math.round(response.data.wind.speed);
     let description = response.data.weather[0].description;
     let feelTemp = Math.round(response.data.main.feels_like);
+    let currentDate = setCurrentDate(response.data.dt * 1000);
+    let currentTime = setCurrentTime(response.data.dt * 1000);
 
     setWeatherOverview(
       <div>
@@ -34,8 +84,8 @@ export default function Weather() {
           </div>
         </p>
         <ul>
-          <li>Date</li>
-          <li>Time</li>
+          <li>{currentDate}</li>
+          <li>{currentTime}</li>
           <br />
           <br />
           <li>Feel like: {feelTemp} °C</li>
