@@ -9,9 +9,7 @@ import Coder from "./Coder";
 
 export default function Weather(props) {
   const [city, setCity] = useState("Taipei City");
-  const [weatherOverview, setWeatherOverview] = useState({
-    city: "Taipei City",
-  });
+  const [weatherOverview, setWeatherOverview] = useState("");
   const [searchLoaded, setSearchLoaded] = useState(false);
 
   function setCurrentTime(time) {
@@ -87,14 +85,14 @@ export default function Weather(props) {
     axios.get(apiUrl).then(showWeatherOverview);
   }
 
-  function handleInput(event) {
-    setCity(event.target.value);
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
-    let cityName = handleInput();
-    search(cityName);
+
+    search(city);
+  }
+
+  function handleInput(event) {
+    setCity(event.target.value);
   }
 
   if (searchLoaded) {
