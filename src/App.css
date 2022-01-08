@@ -2,19 +2,11 @@
   color: rgb(245, 225, 225);
 }
 
-
 .App-background {
   background-image: url("https://images.unsplash.com/photo-1561954791-05d64ce8460f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
-  max-width: 420px;
+  max-width: 400px;
   min-height: 550px;
   border-radius: 15px;
   display: block;
   margin: 0 auto;
-  
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-

@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 import "./Weather.css";
 import { useState } from "react";
 import WeatherIcon from "./WeatherIcon";
-import Coder from "./Coder";
+
 
 export default function Weather(props) {
   const [city, setCity] = useState("Taipei City");
@@ -127,7 +127,7 @@ export default function Weather(props) {
             <li>Wind: {weatherOverview.wind} Km/hr</li>
           </ul>
         </div>
-        <Coder />
+        
       </div>
     );
   } else {
@@ -163,7 +163,7 @@ export default function Weather(props) {
               <li>Wind: {weatherOverview.wind} Km/hr</li>
             </ul>
           </div>
-          <Coder />
+          
         </div>
       );
     } else {
@@ -192,7 +192,7 @@ export default function Weather(props) {
               />
             </div>
           </div>
-          <Coder />
+          
         </div>
       );
     }

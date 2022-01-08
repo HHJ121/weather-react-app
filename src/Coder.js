@@ -4,7 +4,7 @@ import "./Coder.css";
 
 export default function Coder() {
   return (
-    <div className="Coder">
+    <footer className="Coder">
       <p>
         <a
           href="https://github.com/HHJ121/weather-react-app"
@@ -13,7 +13,11 @@ export default function Coder() {
         >
           Open-source code
         </a>{" "}
-        by Haw-Harn Jiang, hosted on{" "}
+        by{" "}
+        <a href="http://guidedbythe1.com/" target="_blank" rel="noreferrer">
+          Haw-Harn Jiang
+        </a>{" "}
+        , hosted on{" "}
         <a
           href="https://cocky-elion-151f36.netlify.app/"
           target="_blank"
@@ -22,6 +26,6 @@ export default function Coder() {
           Netlify
         </a>
       </p>
-    </div>
+    </footer>
   );
 }
