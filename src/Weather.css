@@ -6,17 +6,50 @@
   padding: 25px;
 }
 
+.Weather form {
+  display: flex;
+}
+
+.Weather input {
+  margin-right: 10px;
+}
+
+.Weather .btn {
+  border: 1px solid rgb(247, 161, 82);
+  background: linear-gradient(
+    110.3deg,
+    rgb(238, 179, 123) 8.7%,
+    rgb(216, 103, 77) 47.5%,
+    rgb(114, 43, 54) 89.1%
+  );
+}
+
+.Weather .btn:hover {
+  border: 1px solid rgb(247, 161, 82);
+  color: rgb(247, 161, 82);
+  background: rgb(255, 255, 255);
+}
 .Weather p {
   font-size: 25px;
   margin: 10px;
 }
 
 .Weather p strong {
-  font-size: 45px;
+  font-size: 47px;
+  position: relative;
+  bottom: 22px;
+  margin-left: 10px;
+}
+
+.Weather .units {
+  font-size: 20px;
+  position: relative;
+  bottom: 40px;
+  margin-left: 10px;
 }
 
 .Weather p em {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .Weather ul {
@@ -27,7 +60,7 @@
 
 .Weather h2 {
   font-size: 35px;
-  margin: 10px;
+  margin: 15px 0px 18px 5px;
 }
 
 .Weather .loader {

@@ -6,8 +6,7 @@ import "./Weather.css";
 import { useState } from "react";
 import WeatherIcon from "./WeatherIcon";
 
-
-export default function Weather(props) {
+export default function Weather() {
   const [city, setCity] = useState("Taipei City");
   const [weatherOverview, setWeatherOverview] = useState("");
   const [searchLoaded, setSearchLoaded] = useState(false);
@@ -98,42 +97,7 @@ export default function Weather(props) {
   if (searchLoaded) {
     return (
       <div className="Weather">
-        <div className="wrapper">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="search"
-              placeholder="Enter a city"
-              autoComplete="off"
-              autoFocus="on"
-              onChange={handleInput}
-            />
-            <input type="submit" value="Search" />
-          </form>
-          <h2>{weatherOverview.city}</h2>
-          <p>
-            <WeatherIcon iconCode={weatherOverview.icon} />
-            {""}
-            <strong>{weatherOverview.temp}</strong> °C / °F
-            <br />
-            <em>"{weatherOverview.description}"</em>
-          </p>
-          <ul>
-            <li>{weatherOverview.currentDate}</li>
-            <li>{weatherOverview.currentTime}</li>
-            <br />
-            <br />
-            <li>Feel like: {weatherOverview.feelTemp} °C</li>
-            <li>Humidity: {weatherOverview.humidity} %</li>
-            <li>Wind: {weatherOverview.wind} Km/hr</li>
-          </ul>
-        </div>
-        
-      </div>
-    );
-  } else {
-    if (search("Taipei City")) {
-      return (
-        <div className="Weather">
+        <div className="container">
           <div className="wrapper">
             <form onSubmit={handleSubmit}>
               <input
@@ -142,57 +106,98 @@ export default function Weather(props) {
                 autoComplete="off"
                 autoFocus="on"
                 onChange={handleInput}
+                className="form-control"
               />
-              <input type="submit" value="Search" />
+              <input type="submit" value="Search" className="btn btn-primary" />
             </form>
-            <h2>{city}</h2>
+            <h2>{weatherOverview.city}</h2>
             <p>
               <WeatherIcon iconCode={weatherOverview.icon} />
               {""}
-              <strong>{weatherOverview.temp}</strong> °C / °F
+              <strong>{weatherOverview.temp}</strong>
+              <span className="units">°C / °F</span>
               <br />
-              <em>"{weatherOverview.description}"</em>
+              <em className="description">"{weatherOverview.description}"</em>
             </p>
             <ul>
               <li>{weatherOverview.currentDate}</li>
               <li>{weatherOverview.currentTime}</li>
-              <br />
+
               <br />
               <li>Feel like: {weatherOverview.feelTemp} °C</li>
               <li>Humidity: {weatherOverview.humidity} %</li>
               <li>Wind: {weatherOverview.wind} Km/hr</li>
             </ul>
           </div>
-          
+        </div>
+      </div>
+    );
+  } else {
+    if (search("Taipei City")) {
+      return (
+        <div className="Weather">
+          <div className="container">
+            <div className="wrapper">
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="search"
+                  placeholder="Enter a city"
+                  autoComplete="off"
+                  autoFocus="on"
+                  onChange={handleInput}
+                />
+                <input type="submit" value="Search" />
+              </form>
+              <h2>{city}</h2>
+              <p>
+                <WeatherIcon iconCode={weatherOverview.icon} />
+                {""}
+                <strong>{weatherOverview.temp}</strong>
+                <span className="units">°C / °F</span>
+                <br />
+                <em className="description">"{weatherOverview.description}"</em>
+              </p>
+              <ul>
+                <li>{weatherOverview.currentDate}</li>
+                <li>{weatherOverview.currentTime}</li>
+               
+                <br />
+                <li>Feel like: {weatherOverview.feelTemp} °C</li>
+                <li>Humidity: {weatherOverview.humidity} %</li>
+                <li>Wind: {weatherOverview.wind} Km/hr</li>
+              </ul>
+            </div>
+          </div>
         </div>
       );
     } else {
       return (
         <div className="Weather">
-          <div className="wrapper">
-            <form onSubmit={handleSubmit}>
-              <input
-                type="search"
-                placeholder="Enter a city"
-                autoComplete="off"
-                autoFocus="on"
-                onChange={handleInput}
-              />
-              <input type="submit" value="Search" />
-            </form>
-            <h2>Loading . . . </h2>
-            <p>Getting the data ready...</p>
-            <div className="loader">
-              <Loader
-                type="Grid"
-                color="rgb(245, 225, 225)"
-                height={150}
-                width={150}
-                timeout={70000}
-              />
+          <div className="container">
+            <div className="wrapper">
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="search"
+                  placeholder="Enter a city"
+                  autoComplete="off"
+                  autoFocus="on"
+                  onChange={handleInput}
+                />
+                <input type="submit" value="Search" />
+              </form>
+              <h2>Loading . . . </h2>
+              <p>Getting the data ready...</p>
+              <div className="loader">
+                <Loader
+                  type="Grid"
+                  color="rgb(245, 225, 225)"
+                  height={150}
+                  width={150}
+                  timeout={70000}
+                />
+              </div>
             </div>
           </div>
-          
         </div>
       );
     }
