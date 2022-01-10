@@ -1,9 +1,10 @@
 .Weather {
   color: rgb(245, 225, 225);
+  margin: 8px;
 }
 
 .Weather .wrapper {
-  padding: 25px;
+  padding: 25px 10px;
 }
 
 .Weather form {
