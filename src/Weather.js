@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import Loader from "react-loader-spinner";
 
 import "./Weather.css";
-import { useState } from "react";
-import WeatherIcon from "./WeatherIcon";
+import LoadingSpinner from "./LoadingSpinner";
+import WeatherInfo from "./WeatherInfo";
 
 export default function Weather() {
   const [city, setCity] = useState("Taipei City");
@@ -61,7 +60,6 @@ export default function Weather() {
 
   function showWeatherOverview(response) {
     setSearchLoaded(true);
-
     setWeatherOverview({
       city: response.data.name,
       temp: Math.round(response.data.main.temp),
@@ -80,13 +78,11 @@ export default function Weather() {
   function search(city) {
     let apiKey = "c0d5182ce71bc2be9c80f43da3c8ee07";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
     axios.get(apiUrl).then(showWeatherOverview);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-
     search(city);
   }
 
@@ -110,24 +106,7 @@ export default function Weather() {
               />
               <input type="submit" value="Search" className="btn btn-primary" />
             </form>
-            <h2>{weatherOverview.city}</h2>
-            <p>
-              <WeatherIcon iconCode={weatherOverview.icon} />
-              {""}
-              <strong>{weatherOverview.temp}</strong>
-              <span className="units">°C / °F</span>
-              <br />
-              <em className="description">"{weatherOverview.description}"</em>
-            </p>
-            <ul>
-              <li>{weatherOverview.currentDate}</li>
-              <li>{weatherOverview.currentTime}</li>
-
-              <br />
-              <li>Feel like: {weatherOverview.feelTemp} °C</li>
-              <li>Humidity: {weatherOverview.humidity} %</li>
-              <li>Wind: {weatherOverview.wind} Km/hr</li>
-            </ul>
+            <WeatherInfo data={weatherOverview} />
           </div>
         </div>
       </div>
@@ -148,24 +127,7 @@ export default function Weather() {
                 />
                 <input type="submit" value="Search" />
               </form>
-              <h2>{city}</h2>
-              <p>
-                <WeatherIcon iconCode={weatherOverview.icon} />
-                {""}
-                <strong>{weatherOverview.temp}</strong>
-                <span className="units">°C / °F</span>
-                <br />
-                <em className="description">"{weatherOverview.description}"</em>
-              </p>
-              <ul>
-                <li>{weatherOverview.currentDate}</li>
-                <li>{weatherOverview.currentTime}</li>
-               
-                <br />
-                <li>Feel like: {weatherOverview.feelTemp} °C</li>
-                <li>Humidity: {weatherOverview.humidity} %</li>
-                <li>Wind: {weatherOverview.wind} Km/hr</li>
-              </ul>
+              <WeatherInfo data={weatherOverview} />
             </div>
           </div>
         </div>
@@ -185,17 +147,7 @@ export default function Weather() {
                 />
                 <input type="submit" value="Search" />
               </form>
-              <h2>Loading . . . </h2>
-              <p>Getting the data ready...</p>
-              <div className="loader">
-                <Loader
-                  type="Grid"
-                  color="rgb(245, 225, 225)"
-                  height={150}
-                  width={150}
-                  timeout={70000}
-                />
-              </div>
+              <LoadingSpinner />
             </div>
           </div>
         </div>

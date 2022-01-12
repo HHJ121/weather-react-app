@@ -36,9 +36,9 @@
 }
 
 .Weather p strong {
-  font-size: 47px;
+  font-size: 55px;
   position: relative;
-  bottom: 22px;
+  bottom: 14px;
   margin-left: 10px;
 }
 
@@ -46,7 +46,7 @@
   font-size: 20px;
   position: relative;
   bottom: 40px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .Weather p em {
