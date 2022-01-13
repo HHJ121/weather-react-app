@@ -9,7 +9,6 @@ export default function WeatherInfo(props) {
       <h2>{props.data.city}</h2>
       <p>
         <WeatherIcon iconCode={props.data.icon} />
-        {""}
         <WeatherTemp celsius={props.data.temp} />
         <br />
         <em className="description text-capitalize">

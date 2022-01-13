@@ -31,22 +31,31 @@
   background: rgb(255, 255, 255);
 }
 .Weather p {
-  font-size: 25px;
   margin: 10px;
 }
 
 .Weather p strong {
-  font-size: 55px;
+  font-size: 57px;
   position: relative;
-  bottom: 14px;
-  margin-left: 10px;
+  bottom: 18px;
+  margin-left: 15px;
 }
 
 .Weather .units {
   font-size: 20px;
   position: relative;
-  bottom: 40px;
+  bottom: 42px;
   margin-left: 5px;
+}
+
+.Weather .units a {
+  color: rgb(245, 176, 91);
+  text-decoration: none;
+}
+
+.Weather .units a:hover {
+  font-size: 22px;
+  text-decoration: underline;
 }
 
 .Weather p em {
@@ -61,7 +70,7 @@
 
 .Weather h2 {
   font-size: 35px;
-  margin: 15px 0px 18px 5px;
+  margin: 15px 0px 27px 5px;
 }
 
 .Weather .loader {
