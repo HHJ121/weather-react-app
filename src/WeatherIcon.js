@@ -31,7 +31,7 @@ export default class WeatherIcon extends Component {
       <ReactAnimatedWeather
         icon={this.iconMatching[this.props.iconCode]}
         color={"rgb(245, 225, 225)"}
-        size={70}
+        size={this.props.size}
         animate={"true"}
       />
     );
