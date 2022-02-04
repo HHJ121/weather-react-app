@@ -4,9 +4,10 @@ import axios from "axios";
 import "./Weather.css";
 import LoadingSpinner from "./LoadingSpinner";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 
-export default function Weather() {
-  const [city, setCity] = useState("Taipei City");
+export default function Weather(props) {
+  const [city, setCity] = useState(props.defaultCity);
   const [weatherOverview, setWeatherOverview] = useState("");
   const [searchLoaded, setSearchLoaded] = useState(false);
 
@@ -60,6 +61,7 @@ export default function Weather() {
 
   function showWeatherOverview(response) {
     setSearchLoaded(true);
+
     setWeatherOverview({
       city: response.data.name,
       temp: Math.round(response.data.main.temp),
@@ -70,6 +72,7 @@ export default function Weather() {
       currentDate: setCurrentDate(response.data.dt * 1000),
       currentTime: setCurrentTime(response.data.dt * 1000),
       icon: response.data.weather[0].icon,
+      coordinates: response.data.coord,
     });
 
     return weatherOverview;
@@ -107,32 +110,13 @@ export default function Weather() {
               <input type="submit" value="Search" className="btn btn-primary" />
             </form>
             <WeatherInfo data={weatherOverview} />
+            <WeatherForecast coordinates={weatherOverview.coordinates} />
           </div>
         </div>
       </div>
     );
   } else {
-    if (search("Taipei City")) {
-      return (
-        <div className="Weather">
-          <div className="container">
-            <div className="wrapper">
-              <form onSubmit={handleSubmit}>
-                <input
-                  type="search"
-                  placeholder="Enter a city"
-                  autoComplete="off"
-                  autoFocus="on"
-                  onChange={handleInput}
-                />
-                <input type="submit" value="Search" />
-              </form>
-              <WeatherInfo data={weatherOverview} />
-            </div>
-          </div>
-        </div>
-      );
-    } else {
+      search(city);
       return (
         <div className="Weather">
           <div className="container">
@@ -154,4 +138,3 @@ export default function Weather() {
       );
     }
   }
-}

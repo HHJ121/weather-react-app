@@ -10,7 +10,7 @@ export default function App() {
     <div className="App">
       <div className="container">
         <div className="App-background">
-          <Weather />
+          <Weather defaultCity="Taipei City" />
         </div>
         <Coder />
       </div>
