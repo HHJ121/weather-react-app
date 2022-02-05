@@ -6,11 +6,10 @@ import LoadingSpinner from "./LoadingSpinner";
 import WeatherInfo from "./WeatherInfo";
 import WeatherForecast from "./WeatherForecast";
 
-export default function Weather(props) {
-  const [city, setCity] = useState(props.defaultCity);
-  const [weatherOverview, setWeatherOverview] = useState("");
-  const [searchLoaded, setSearchLoaded] = useState(false);
-
+export default function Weather() {
+  const [city, setCity] = useState("Taipei City");
+  const [weatherOverview, setWeatherOverview] = useState({ searchLoaded: false});
+ 
   function setCurrentTime(time) {
     let currentTime = new Date(time);
     let hours = currentTime.getHours();
@@ -60,9 +59,9 @@ export default function Weather(props) {
   }
 
   function showWeatherOverview(response) {
-    setSearchLoaded(true);
 
     setWeatherOverview({
+      searchLoaded: true,
       city: response.data.name,
       temp: Math.round(response.data.main.temp),
       humidity: response.data.main.humidity,
@@ -75,7 +74,7 @@ export default function Weather(props) {
       coordinates: response.data.coord,
     });
 
-    return weatherOverview;
+    
   }
 
   function search(city) {
@@ -93,7 +92,7 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
-  if (searchLoaded) {
+  if (weatherOverview.searchLoaded) {
     return (
       <div className="Weather">
         <div className="container">

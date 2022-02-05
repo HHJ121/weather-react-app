@@ -1,0 +1,20 @@
+.WeatherForecastDay {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.WeatherForecastDay .forecast-day {
+    font-size: 15px;
+}
+
+.WeatherForecastDay .icon {
+    margin-top: 10px;
+}
+
+.WeatherForecastDay .temp-max {
+    font-weight: bold;
+}
+
+.WeatherForecastDay .temp-min {
+    opacity: 0.7;
+}

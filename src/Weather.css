@@ -49,7 +49,7 @@
 }
 
 .Weather .units a {
-  color: rgb(245, 176, 91);
+  color: rgb(252, 188, 110);
   text-decoration: none;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .Weather p em {
-  font-size: 18px;
+  font-size: 19px;
 }
 
 .Weather ul {
